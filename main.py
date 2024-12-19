@@ -46,3 +46,38 @@ if results.pose_landmarks:
         landmark_name = mp_pose.PoseLandmark(idx).name.lower()
         detected_keypoints[landmark_name] = [landmark.x, landmark.y]
 """
+
+from src.keypoint_extractor import KeypointExtractor
+from src.keypoint_templates import TemplateManager
+from src.pose_matching import PoseMatcher
+from src.normalization import normalize_keypoints
+
+VIDEO_PATH = r'data/videos/test1.mp4'
+FRAMES_PATH = r'data/frames_img'
+FRAME_INTERVAL = 10
+MAX_FRAME = 100
+TEMPLATE_PATH = r'data/templates'
+
+# Initialize the extractor
+extractor = KeypointExtractor(VIDEO_PATH, FRAME_INTERVAL, MAX_FRAME, FRAMES_PATH)
+
+# Extract keypoints and frames (frames will be saved in the specified directory)
+keypoints_per_frame = extractor.extract_keypoints_from_video()
+
+# Load templates
+template_manager = TemplateManager()
+template_manager.load_templates(TEMPLATE_PATH)
+
+# Compare keypoints to templates and match poses
+pose_matcher = PoseMatcher(threshold=0.5)  # Set the matching threshold
+
+for frame_idx, keypoints in enumerate(keypoints_per_frame):
+    print(f"Processing frame {frame_idx + 1}...")
+
+    # Match pose with the templates
+    best_match_name, min_distance = pose_matcher.match_pose(keypoints, template_manager.templates)
+
+    if best_match_name:
+        print(f"Frame {frame_idx + 1}: Best matched pose: {best_match_name} with a distance of {min_distance}")
+    else:
+        print(f"Frame {frame_idx + 1}: No matching pose found within the threshold.")
