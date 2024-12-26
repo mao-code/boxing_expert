@@ -1,5 +1,5 @@
 import numpy as np
-from typing import Dict, Tuple
+from typing import Dict, Tuple, List
 from src.normalization import normalize_keypoints
 
 class PoseMatcher:

@@ -55,7 +55,7 @@ from src.normalization import normalize_keypoints
 VIDEO_PATH = r'data/videos/test1.mp4'
 FRAMES_PATH = r'data/frames_img'
 FRAME_INTERVAL = 10
-MAX_FRAME = 100
+MAX_FRAME = 300
 TEMPLATE_PATH = r'data/templates'
 
 # Initialize the extractor
