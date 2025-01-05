@@ -51,13 +51,19 @@ from src.keypoint_extractor import KeypointExtractor
 from src.keypoint_templates import TemplateManager
 from src.pose_matching import PoseMatcher
 from src.normalization import normalize_keypoints
+from src.analyzer import analyze_all
+import sys
+from PyQt5.QtWidgets import QApplication
+from src.UI import BoxingApp
 
 VIDEO_PATH = r'data/videos/test1.mp4'
 FRAMES_PATH = r'data/frames_img'
 FRAME_INTERVAL = 10
-MAX_FRAME = 100
+MAX_FRAME = 300
 TEMPLATE_PATH = r'data/templates'
+THRESHOLD = 0.5
 
+'''
 # Initialize the extractor
 extractor = KeypointExtractor(VIDEO_PATH, FRAME_INTERVAL, MAX_FRAME, FRAMES_PATH)
 
@@ -69,7 +75,7 @@ template_manager = TemplateManager()
 template_manager.load_templates(TEMPLATE_PATH)
 
 # Compare keypoints to templates and match poses
-pose_matcher = PoseMatcher(threshold=0.5)  # Set the matching threshold
+pose_matcher = PoseMatcher(threshold=THRESHOLD)  # Set the matching threshold
 
 for frame_idx, keypoints in enumerate(keypoints_per_frame):
     print(f"Processing frame {frame_idx + 1}...")
@@ -81,3 +87,17 @@ for frame_idx, keypoints in enumerate(keypoints_per_frame):
         print(f"Frame {frame_idx + 1}: Best matched pose: {best_match_name} with a distance of {min_distance}")
     else:
         print(f"Frame {frame_idx + 1}: No matching pose found within the threshold.")
+'''
+
+results = analyze_all(VIDEO_PATH, TEMPLATE_PATH, FRAME_INTERVAL, MAX_FRAME, THRESHOLD, FRAMES_PATH)
+# print(results)
+
+app = QApplication(sys.argv)
+mainWin = BoxingApp()
+
+# mainWin.set_results(results)
+mainWin.set_realTime_mode(True) # 如果要 upload 其他影片開這個
+
+mainWin.set_interval(FRAME_INTERVAL)
+mainWin.show()
+sys.exit(app.exec_())
