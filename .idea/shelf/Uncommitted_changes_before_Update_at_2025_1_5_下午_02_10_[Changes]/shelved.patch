@@ -1,0 +1,750 @@
+Index: .idea/boxing_expert.iml
+===================================================================
+diff --git a/.idea/boxing_expert.iml b/.idea/boxing_expert.iml
+deleted file mode 100644
+--- a/.idea/boxing_expert.iml	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
++++ /dev/null	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
+@@ -1,12 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<module type="PYTHON_MODULE" version="4">
+-  <component name="NewModuleRootManager">
+-    <content url="file://$MODULE_DIR$" />
+-    <orderEntry type="jdk" jdkName="py39_env" jdkType="Python SDK" />
+-    <orderEntry type="sourceFolder" forTests="false" />
+-  </component>
+-  <component name="PyDocumentationSettings">
+-    <option name="format" value="PLAIN" />
+-    <option name="myDocStringFormat" value="Plain" />
+-  </component>
+-</module>
+\ No newline at end of file
+Index: .idea/modules.xml
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+deleted file mode 100644
+--- a/.idea/modules.xml	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
++++ /dev/null	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/boxing_expert.iml" filepath="$PROJECT_DIR$/.idea/boxing_expert.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/.gitignore
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+deleted file mode 100644
+--- a/.idea/.gitignore	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
++++ /dev/null	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
+@@ -1,3 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+Index: .idea/vcs.xml
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+deleted file mode 100644
+--- a/.idea/vcs.xml	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
++++ /dev/null	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
+@@ -1,7 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="VcsDirectoryMappings">
+-    <mapping directory="" vcs="Git" />
+-    <mapping directory="$PROJECT_DIR$/boxing_expert" vcs="Git" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+deleted file mode 100644
+--- a/.idea/misc.xml	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
++++ /dev/null	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
+@@ -1,7 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="Black">
+-    <option name="sdkName" value="Python 3.12" />
+-  </component>
+-  <component name="ProjectRootManager" version="2" project-jdk-name="py39_env" project-jdk-type="Python SDK" />
+-</project>
+\ No newline at end of file
+Index: .idea/inspectionProfiles/profiles_settings.xml
+===================================================================
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+deleted file mode 100644
+--- a/.idea/inspectionProfiles/profiles_settings.xml	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
++++ /dev/null	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
+@@ -1,6 +0,0 @@
+-<component name="InspectionProjectProfileManager">
+-  <settings>
+-    <option name="USE_PROJECT_PROFILE" value="false" />
+-    <version value="1.0" />
+-  </settings>
+-</component>
+\ No newline at end of file
+Index: data/templates/hook.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/templates/hook.json b/data/templates/hook.json
+--- a/data/templates/hook.json	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
++++ b/data/templates/hook.json	(date 1736056952258)
+@@ -1,0 +1,137 @@
++{
++    "name": "hook",
++    "keypoints":{
++        "nose": [
++            0.3899954855442047,
++            0.5255780816078186
++        ],
++        "left_eye_inner": [
++            0.40554720163345337,
++            0.509080708026886
++        ],
++        "left_eye": [
++            0.4158206582069397,
++            0.5081216096878052
++        ],
++        "left_eye_outer": [
++            0.4254947304725647,
++            0.5070406794548035
++        ],
++        "right_eye_inner": [
++            0.3702121675014496,
++            0.5102935433387756
++        ],
++        "right_eye": [
++            0.3594321310520172,
++            0.510047197341919
++        ],
++        "right_eye_outer": [
++            0.3503561317920685,
++            0.5100206136703491
++        ],
++        "left_ear": [
++            0.4415779709815979,
++            0.5074316263198853
++        ],
++        "right_ear": [
++            0.34179264307022095,
++            0.5123211741447449
++        ],
++        "mouth_left": [
++            0.4149574041366577,
++            0.5390631556510925
++        ],
++        "mouth_right": [
++            0.37454918026924133,
++            0.5401340126991272
++        ],
++        "left_shoulder": [
++            0.5206378102302551,
++            0.5617566704750061
++        ],
++        "right_shoulder": [
++            0.31742385029792786,
++            0.5889056921005249
++        ],
++        "left_elbow": [
++            0.6738495826721191,
++            0.567638099193573
++        ],
++        "right_elbow": [
++            0.22042253613471985,
++            0.6714945435523987
++        ],
++        "left_wrist": [
++            0.46807289123535156,
++            0.5669945478439331
++        ],
++        "right_wrist": [
++            0.3102506697177887,
++            0.5685564875602722
++        ],
++        "left_pinky": [
++            0.4125629663467407,
++            0.5694552063941956
++        ],
++        "right_pinky": [
++            0.3218497335910797,
++            0.5464311838150024
++        ],
++        "left_index": [
++            0.40305814146995544,
++            0.5692774653434753
++        ],
++        "right_index": [
++            0.32915693521499634,
++            0.5410628914833069
++        ],
++        "left_thumb": [
++            0.41410863399505615,
++            0.5713971853256226
++        ],
++        "right_thumb": [
++            0.3367268145084381,
++            0.5519698262214661
++        ],
++        "left_hip": [
++            0.5477085113525391,
++            0.78357994556427
++        ],
++        "right_hip": [
++            0.4310351312160492,
++            0.7890828251838684
++        ],
++        "left_knee": [
++            0.5946406722068787,
++            0.937004804611206
++        ],
++        "right_knee": [
++            0.3642614483833313,
++            0.9316208362579346
++        ],
++        "left_ankle": [
++            0.585425615310669,
++            1.0358195304870605
++        ],
++        "right_ankle": [
++            0.3949316442012787,
++            1.0365521907806396
++        ],
++        "left_heel": [
++            0.5783119797706604,
++            1.0514042377471924
++        ],
++        "right_heel": [
++            0.41238418221473694,
++            1.0498284101486206
++        ],
++        "left_foot_index": [
++            0.609967052936554,
++            1.0783873796463013
++        ],
++        "right_foot_index": [
++            0.38750046491622925,
++            1.0924904346466064
++        ]
++    }
++}
+\ No newline at end of file
+Index: data/templates/jab.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/templates/jab.json b/data/templates/jab.json
+--- a/data/templates/jab.json	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
++++ b/data/templates/jab.json	(date 1736056952260)
+@@ -1,0 +1,137 @@
++{
++    "name": "jab",
++    "keypoints": {
++        "nose": [
++            0.6282842755317688,
++            0.5289575457572937
++        ],
++        "left_eye_inner": [
++            0.627874493598938,
++            0.512432873249054
++        ],
++        "left_eye": [
++            0.6301286816596985,
++            0.511938214302063
++        ],
++        "left_eye_outer": [
++            0.632106602191925,
++            0.5113890171051025
++        ],
++        "right_eye_inner": [
++            0.6119415760040283,
++            0.5116841197013855
++        ],
++        "right_eye": [
++            0.6005117297172546,
++            0.5107237100601196
++        ],
++        "right_eye_outer": [
++            0.5868328213691711,
++            0.5097871422767639
++        ],
++        "left_ear": [
++            0.6045677065849304,
++            0.5108960270881653
++        ],
++        "right_ear": [
++            0.5384430289268494,
++            0.5091936588287354
++        ],
++        "mouth_left": [
++            0.6185919046401978,
++            0.5456833839416504
++        ],
++        "mouth_right": [
++            0.5975183844566345,
++            0.5457084774971008
++        ],
++        "left_shoulder": [
++            0.5884076356887817,
++            0.5979433655738831
++        ],
++        "right_shoulder": [
++            0.4538722336292267,
++            0.5659976601600647
++        ],
++        "left_elbow": [
++            0.692291796207428,
++            0.6604864001274109
++        ],
++        "right_elbow": [
++            0.628603458404541,
++            0.5795028805732727
++        ],
++        "left_wrist": [
++            0.7074301838874817,
++            0.5821154117584229
++        ],
++        "right_wrist": [
++            0.8412758111953735,
++            0.5475102663040161
++        ],
++        "left_pinky": [
++            0.6698237061500549,
++            0.5614879727363586
++        ],
++        "right_pinky": [
++            0.899604082107544,
++            0.5453817248344421
++        ],
++        "left_index": [
++            0.6512698531150818,
++            0.5548067092895508
++        ],
++        "right_index": [
++            0.9062545299530029,
++            0.5354613661766052
++        ],
++        "left_thumb": [
++            0.6498485207557678,
++            0.5571900606155396
++        ],
++        "right_thumb": [
++            0.8919703364372253,
++            0.5373980402946472
++        ],
++        "left_hip": [
++            0.5603038668632507,
++            0.8281095027923584
++        ],
++        "right_hip": [
++            0.4491136372089386,
++            0.8361210823059082
++        ],
++        "left_knee": [
++            0.6919299960136414,
++            0.970729649066925
++        ],
++        "right_knee": [
++            0.457345187664032,
++            0.9870238900184631
++        ],
++        "left_ankle": [
++            0.6021854877471924,
++            1.1039305925369263
++        ],
++        "right_ankle": [
++            0.43738192319869995,
++            1.1195189952850342
++        ],
++        "left_heel": [
++            0.5648218393325806,
++            1.1131751537322998
++        ],
++        "right_heel": [
++            0.41353216767311096,
++            1.136639952659607
++        ],
++        "left_foot_index": [
++            0.646776020526886,
++            1.160784363746643
++        ],
++        "right_foot_index": [
++            0.5014023780822754,
++            1.1722244024276733
++        ]
++    }
++}
+\ No newline at end of file
+Index: data/templates/cross.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/templates/cross.json b/data/templates/cross.json
+--- a/data/templates/cross.json	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
++++ b/data/templates/cross.json	(date 1736056952256)
+@@ -1,0 +1,137 @@
++{
++    "name": "cross",
++    "keypoints": {
++        "nose": [
++            0.43145307898521423,
++            0.4825747013092041
++        ],
++        "left_eye_inner": [
++            0.4377594590187073,
++            0.474318265914917
++        ],
++        "left_eye": [
++            0.4405353367328644,
++            0.47367969155311584
++        ],
++        "left_eye_outer": [
++            0.44319790601730347,
++            0.4730222821235657
++        ],
++        "right_eye_inner": [
++            0.42845582962036133,
++            0.4744119346141815
++        ],
++        "right_eye": [
++            0.424449622631073,
++            0.47371765971183777
++        ],
++        "right_eye_outer": [
++            0.4203311502933502,
++            0.47290748357772827
++        ],
++        "left_ear": [
++            0.4431854784488678,
++            0.4718049466609955
++        ],
++        "right_ear": [
++            0.4062684178352356,
++            0.4705301821231842
++        ],
++        "mouth_left": [
++            0.43520504236221313,
++            0.48931822180747986
++        ],
++        "mouth_right": [
++            0.42284032702445984,
++            0.4890580475330353
++        ],
++        "left_shoulder": [
++            0.47940152883529663,
++            0.49453407526016235
++        ],
++        "right_shoulder": [
++            0.3546570837497711,
++            0.5015761852264404
++        ],
++        "left_elbow": [
++            0.5622082352638245,
++            0.49685707688331604
++        ],
++        "right_elbow": [
++            0.34534940123558044,
++            0.5648564696311951
++        ],
++        "left_wrist": [
++            0.6382130980491638,
++            0.50074702501297
++        ],
++        "right_wrist": [
++            0.39145854115486145,
++            0.5172964930534363
++        ],
++        "left_pinky": [
++            0.6617620587348938,
++            0.5005053877830505
++        ],
++        "right_pinky": [
++            0.4054681956768036,
++            0.5036118626594543
++        ],
++        "left_index": [
++            0.6591799259185791,
++            0.5013889670372009
++        ],
++        "right_index": [
++            0.4004037082195282,
++            0.49780362844467163
++        ],
++        "left_thumb": [
++            0.65196692943573,
++            0.5030854940414429
++        ],
++        "right_thumb": [
++            0.39665621519088745,
++            0.5024929642677307
++        ],
++        "left_hip": [
++            0.45387256145477295,
++            0.6300943493843079
++        ],
++        "right_hip": [
++            0.3756926953792572,
++            0.6292921900749207
++        ],
++        "left_knee": [
++            0.48404866456985474,
++            0.717069685459137
++        ],
++        "right_knee": [
++            0.337359756231308,
++            0.7148728966712952
++        ],
++        "left_ankle": [
++            0.5153343677520752,
++            0.7991607189178467
++        ],
++        "right_ankle": [
++            0.2985896170139313,
++            0.7927825450897217
++        ],
++        "left_heel": [
++            0.5087235569953918,
++            0.8086122274398804
++        ],
++        "right_heel": [
++            0.30711978673934937,
++            0.8024572134017944
++        ],
++        "left_foot_index": [
++            0.538345217704773,
++            0.8292639255523682
++        ],
++        "right_foot_index": [
++            0.2736465036869049,
++            0.8244736194610596
++        ]
++    }
++}
+\ No newline at end of file
+Index: data/templates/uppercut.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/templates/uppercut.json b/data/templates/uppercut.json
+--- a/data/templates/uppercut.json	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
++++ b/data/templates/uppercut.json	(date 1736056952262)
+@@ -1,0 +1,137 @@
++{
++    "name": "uppercut",
++    "keypoints": {
++        "nose": [
++            0.6776401400566101,
++            0.5452764630317688
++        ],
++        "left_eye_inner": [
++            0.6633853912353516,
++            0.5291721224784851
++        ],
++        "left_eye": [
++            0.6589000225067139,
++            0.5289234519004822
++        ],
++        "left_eye_outer": [
++            0.6535200476646423,
++            0.5285809636116028
++        ],
++        "right_eye_inner": [
++            0.6650656461715698,
++            0.5289651155471802
++        ],
++        "right_eye": [
++            0.6626765131950378,
++            0.5287857055664062
++        ],
++        "right_eye_outer": [
++            0.6599844694137573,
++            0.5285413861274719
++        ],
++        "left_ear": [
++            0.6106906533241272,
++            0.5315420627593994
++        ],
++        "right_ear": [
++            0.6344888806343079,
++            0.5316361784934998
++        ],
++        "mouth_left": [
++            0.6646599769592285,
++            0.5592306852340698
++        ],
++        "mouth_right": [
++            0.6671578288078308,
++            0.5584535598754883
++        ],
++        "left_shoulder": [
++            0.4699719250202179,
++            0.6061056852340698
++        ],
++        "right_shoulder": [
++            0.6584223508834839,
++            0.5959205627441406
++        ],
++        "left_elbow": [
++            0.4486272931098938,
++            0.6485539078712463
++        ],
++        "right_elbow": [
++            0.9009588956832886,
++            0.6328323483467102
++        ],
++        "left_wrist": [
++            0.5253440141677856,
++            0.599359393119812
++        ],
++        "right_wrist": [
++            0.9567945599555969,
++            0.5178043246269226
++        ],
++        "left_pinky": [
++            0.5300078392028809,
++            0.584864616394043
++        ],
++        "right_pinky": [
++            0.9712313413619995,
++            0.49235907196998596
++        ],
++        "left_index": [
++            0.56708824634552,
++            0.5646185278892517
++        ],
++        "right_index": [
++            0.9392560720443726,
++            0.4844679534435272
++        ],
++        "left_thumb": [
++            0.5682886242866516,
++            0.56584632396698
++        ],
++        "right_thumb": [
++            0.9312812685966492,
++            0.49292802810668945
++        ],
++        "left_hip": [
++            0.5647810697555542,
++            0.8725802898406982
++        ],
++        "right_hip": [
++            0.6270427107810974,
++            0.8750035762786865
++        ],
++        "left_knee": [
++            0.6631835699081421,
++            1.050930380821228
++        ],
++        "right_knee": [
++            0.7995926737785339,
++            1.0236855745315552
++        ],
++        "left_ankle": [
++            0.598137617111206,
++            1.181174635887146
++        ],
++        "right_ankle": [
++            0.6884726285934448,
++            1.1995443105697632
++        ],
++        "left_heel": [
++            0.571639895439148,
++            1.1990587711334229
++        ],
++        "right_heel": [
++            0.6388840079307556,
++            1.2181452512741089
++        ],
++        "left_foot_index": [
++            0.649305522441864,
++            1.208375334739685
++        ],
++        "right_foot_index": [
++            0.7771335244178772,
++            1.2388176918029785
++        ]
++    }
++}
+\ No newline at end of file
+Index: src/keypoint_extractor.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import os\r\nimport cv2\r\nimport shutil\r\nimport mediapipe as mp\r\nimport numpy as np\r\nfrom typing import Dict, List\r\n\r\n\r\nclass KeypointExtractor:\r\n    def __init__(self, video_path: str, frame_interval: int = 1, max_frames: int = None, frames_dir: str = None):\r\n        \"\"\"\r\n        Args:\r\n            video_path (str): Path to the input video file.\r\n            frames_dir (str): Directory where frames will be saved, if saveImg2file is True.\r\n            frame_interval (int): Interval to control how often frames are extracted.\r\n            max_frames (int): Maximum number of frames to extract from the video. If None, all frames will be processed.\r\n        \"\"\"\r\n        self.video_path = video_path\r\n        self.frame_interval = frame_interval\r\n        self.max_frames = max_frames\r\n        self.frames_dir = frames_dir\r\n        self.cap = cv2.VideoCapture(self.video_path)\r\n\r\n        if not self.cap.isOpened():\r\n            raise ValueError(f\"Error: Couldn't open video {self.video_path}\")\r\n\r\n        self.total_frames = int(self.cap.get(cv2.CAP_PROP_FRAME_COUNT))\r\n\r\n        # Initialize Mediapipe Pose model\r\n        self.mp_pose = mp.solutions.pose\r\n        self.pose = self.mp_pose.Pose()\r\n\r\n    def extract_keypoints(self, frame: np.ndarray) -> Dict[str, List[float]]:\r\n        \"\"\"\r\n        Extract pose keypoints from a single frame.\r\n        Args: frame (np.ndarray): The input image (OpenCV format).\r\n        Returns: Dict[str, List[float]]: Keypoints dictionary with {keypoint_name: [x, y]}.\r\n        \"\"\"\r\n\r\n        image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)\r\n        results = self.pose.process(image_rgb)\r\n\r\n        keypoints = {}\r\n        if results.pose_landmarks:\r\n            for idx, landmark in enumerate(results.pose_landmarks.landmark):\r\n                landmark_name = self.mp_pose.PoseLandmark(idx).name.lower()\r\n                keypoints[landmark_name] = [landmark.x, landmark.y]\r\n\r\n        return keypoints\r\n\r\n    def extract_keypoints_from_video(self, saveImg:bool = True) -> List[Dict[str, List[float]]]:\r\n        \"\"\"\r\n        Extract keypoints from the video, optionally saving frames as images.\r\n        Args: saveImg2file (bool): Whether to save frames as images. Default is True.\r\n        Returns: List[Dict[str, List[float]]]: A list of keypoints dictionaries for each frame.\r\n        \"\"\"\r\n        keypoints_per_frame = []\r\n        frame_count = 0\r\n        saved_frame_count = 0\r\n\r\n        try:\r\n            while self.cap.isOpened():\r\n                ret, frame = self.cap.read()\r\n                if not ret:\r\n                    break\r\n\r\n                if self.max_frames and frame_count >= self.max_frames:\r\n                    break\r\n\r\n                if saveImg and not os.path.exists(self.frames_dir):\r\n                    os.makedirs(self.frames_dir)  # Create the directory to save frames if needed\r\n\r\n                if frame_count % self.frame_interval == 0:\r\n\r\n                    # Extract keypoints for the current frame\r\n                    keypoints = self.extract_keypoints(frame)\r\n                    keypoints_per_frame.append(keypoints)\r\n\r\n                    # Save the frame as an image if required\r\n                    if saveImg:\r\n                        frame_filename = os.path.join(self.frames_dir, f\"frame_{saved_frame_count:04d}.jpg\")\r\n                        # cv2.imwrite(frame_filename, frame)\r\n                        # saved_frame_count += 1\r\n                        success = cv2.imwrite(frame_filename, frame)\r\n                        if not success:\r\n                            print(f\"Failed to save image: {frame_filename}\")\r\n                        else:\r\n                            saved_frame_count += 1\r\n\r\n                frame_count += 1\r\n        finally:\r\n            self.cap.release()\r\n        return keypoints_per_frame\r\n\r\n    def get_total_frames(self) -> int:\r\n        return self.total_frames\r\n\r\n    def clear_existing_frames(self):\r\n        if self.frames_dir and os.path.exists(self.frames_dir):\r\n            for filename in os.listdir(self.frames_dir):\r\n                path = os.path.join(self.frames_dir, filename)\r\n                try:\r\n                    if os.path.isfile(path):\r\n                        os.remove(path)\r\n                    elif os.path.isdir(path):\r\n                        shutil.rmtree(path)\r\n                except Exception as e:\r\n                    print(f\"Error deleting {path}: {e}\")\r\n\r\n    def set_frame_interval(self, frame_interval:int):\r\n        self.frame_interval = frame_interval\r\n\r\n    def set_frames_dir(self, frames_dir:str):\r\n        self.frames_dir = frames_dir\r\n\r\n\r\n# # Test\r\n# if __name__ == \"__main__\":\r\n#     video_path = r'..\\data\\videos\\test1.mp4'\r\n#     frames_dir = r'..\\data\\frame_img'  # Directory to save frames\r\n#     frame_interval = 5  # Extract every 5th frame\r\n#     max_frames = 100  # Optionally limit the number of frames to process\r\n#\r\n#     # Initialize the extractor\r\n#     extractor = KeypointExtractor(video_path, frame_interval, max_frames, frames_dir)\r\n#\r\n#     # Extract keypoints and frames (frames will be saved in the specified directory)\r\n#     keypoints_per_frame = extractor.extract_keypoints_from_video()\r\n#\r\n#     # Print the keypoints for the first few frames\r\n#     print(f\"Total frames: {extractor.get_total_frames()}\")\r\n#     for i, keypoints in enumerate(keypoints_per_frame[:5]):  # Print first 5 frames' keypoints\r\n#         print(f\"Frame {i + 1}: {keypoints}\")\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/keypoint_extractor.py b/src/keypoint_extractor.py
+--- a/src/keypoint_extractor.py	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
++++ b/src/keypoint_extractor.py	(date 1736056952271)
+@@ -6,6 +6,25 @@
+ from typing import Dict, List
+ 
+ 
++def extract_keypoints(frame: np.ndarray) -> Dict[str, List[float]]:
++    """
++    Extract pose keypoints from a single frame.
++    Args: frame (np.ndarray): The input image (OpenCV format).
++    Returns: Dict[str, List[float]]: Keypoints dictionary with {keypoint_name: [x, y]}.
++    """
++    mp_pose = mp.solutions.pose
++    pose = mp_pose.Pose()
++    image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
++    results = pose.process(image_rgb)
++
++    keypoints = {}
++    if results.pose_landmarks:
++        for idx, landmark in enumerate(results.pose_landmarks.landmark):
++            landmark_name = mp_pose.PoseLandmark(idx).name.lower()
++            keypoints[landmark_name] = [landmark.x, landmark.y]
++
++    return keypoints
++
+ class KeypointExtractor:
+     def __init__(self, video_path: str, frame_interval: int = 1, max_frames: int = None, frames_dir: str = None):
+         """
+@@ -95,18 +114,6 @@
+     def get_total_frames(self) -> int:
+         return self.total_frames
+ 
+-    def clear_existing_frames(self):
+-        if self.frames_dir and os.path.exists(self.frames_dir):
+-            for filename in os.listdir(self.frames_dir):
+-                path = os.path.join(self.frames_dir, filename)
+-                try:
+-                    if os.path.isfile(path):
+-                        os.remove(path)
+-                    elif os.path.isdir(path):
+-                        shutil.rmtree(path)
+-                except Exception as e:
+-                    print(f"Error deleting {path}: {e}")
+-
+     def set_frame_interval(self, frame_interval:int):
+         self.frame_interval = frame_interval
+ 
+Index: src/pose_matching.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import numpy as np\r\nfrom typing import Dict, Tuple\r\nfrom src.normalization import normalize_keypoints\r\n\r\nclass PoseMatcher:\r\n    def __init__(self, threshold: float = 0.5):\r\n        self.threshold = threshold  # Threshold for considering a pose as matched\r\n\r\n    def compute_distance(self, keypoints_a: Dict[str, List[float]], keypoints_b: Dict[str, List[float]], method: str = 'euclidean') -> float:\r\n        \"\"\"\r\n        Compute the distance between two sets of keypoints.\r\n        \"\"\"\r\n        common_keypoints = set(keypoints_a.keys()).intersection(set(keypoints_b.keys()))\r\n        if not common_keypoints:\r\n            return float('inf')  # No common keypoints to compare\r\n\r\n        distances = []\r\n        for key in common_keypoints:\r\n            point_a = np.array(keypoints_a[key])\r\n            point_b = np.array(keypoints_b[key])\r\n            if method == 'euclidean':\r\n                distances.append(np.linalg.norm(point_a - point_b))\r\n            else:\r\n                raise ValueError(f\"Unsupported distance method: {method}\")\r\n\r\n        if not distances:\r\n            return float('inf')\r\n\r\n        return np.mean(distances)\r\n\r\n    def match_pose(self, detected_keypoints: Dict[str, List[float]], templates: Dict[str, 'BoxingPoseTemplate']) -> Tuple[str, float]:\r\n        \"\"\"\r\n        Compare the detected keypoints against all templates and return the best match.\r\n        \"\"\"\r\n        normalized_detected = normalize_keypoints(detected_keypoints)\r\n        min_distance = float('inf')\r\n        best_match_name = None\r\n\r\n        for name, template in templates.items():\r\n            normalized_template = normalize_keypoints(template.keypoints)\r\n            distance = self.compute_distance(normalized_detected, normalized_template)\r\n            if distance < min_distance:\r\n                min_distance = distance\r\n                best_match_name = name\r\n\r\n        if min_distance <= self.threshold:\r\n            return best_match_name, min_distance\r\n        else:\r\n            return None, min_distance  # No pose matches within the threshold
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/pose_matching.py b/src/pose_matching.py
+--- a/src/pose_matching.py	(revision 4b52a5fb9df2bfd36179ce1fd1c6d9afec4d16eb)
++++ b/src/pose_matching.py	(date 1736056952272)
+@@ -1,5 +1,5 @@
+ import numpy as np
+-from typing import Dict, Tuple
++from typing import Dict, Tuple, List
+ from src.normalization import normalize_keypoints
+ 
+ class PoseMatcher:
