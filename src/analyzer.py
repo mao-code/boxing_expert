@@ -6,15 +6,15 @@ from src.pose_matching import PoseMatcher
 def analyze_all(video_path, template_path, frame_interval=1, max_frame=1000, threshold=0.5, frames_path=None):
     """
     Args:
-        video_path:
-        template_path:
-        frame_interval:
-        max_frame:
-        threshold:
-        frames_path:
+        video_path: str
+        template_path: str
+        frame_interval: int
+        max_frame: int
+        threshold: int
+        frames_path: str, the place to save img
 
     Returns:
-
+        {1:'HOOK', 2:'jab', 3: None, ...}
     """
     # Initialization
     extractor = KeypointExtractor(video_path, frame_interval, max_frame, frames_path)
@@ -36,22 +36,6 @@ def analyze_all(video_path, template_path, frame_interval=1, max_frame=1000, thr
                 kps[frame_idx] = kps[frame_idx].lower()
         else:
             kps[frame_idx + 1] = None
-
-    # results2show = []
-    # '''
-    # {'tech':"",
-    # 'order': 1(last one) / 0
-    # }
-    # '''
-    # for key, bestMatch in kps.items():
-    #     if bestMatch:  # 有 tech
-    #         if key < len(kps) and bestMatch == kps[key + 1]:
-    #             new = {'tech': bestMatch.upper(), 'order': 0}
-    #         else:  # last one
-    #             new = {'tech': bestMatch.upper(), 'order': 1}
-    #     else:
-    #         new = {'tech': bestMatch, 'order': 0}
-    #     results2show.append(new)
     return kps
 
 

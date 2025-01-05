@@ -211,13 +211,10 @@ class BoxingApp(QMainWindow):
                 if last_text:
                     if frameNum > 1:
                         # 不是第一個也不是最後一個
-                        if last_text == update_text:  # oo,上一 frame 和此 frame技術一樣。把上一 frame 改小寫
+                        if last_text == update_text:  # 上一 frame 和此 frame技術一樣。把上一 frame 改小寫
                             self.techniques[update_text] -= 1
-                            # self.results[frameNum-1] = self.results[frameNum-1].lower()  # 不是最後一個，改小寫
                         else: # 上一個 是連續的最後 lo
                             self.tech_color[last_text] = 'black'
-                else: # xo
-                    pass
 
                 self.update_technique_labels()
 
@@ -315,6 +312,9 @@ class BoxingApp(QMainWindow):
 
     def set_realTime_mode(self, realTime):
         self.realTime_mode = realTime
+
+    def set_vedio_path(self, path):
+        self.video_path = path
 
 
 class CameraThread(QThread):
