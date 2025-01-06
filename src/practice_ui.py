@@ -38,8 +38,8 @@ class PracticeWindow(QMainWindow):
         self.score = 0
 
         # Random target parameters (x, y, radius)
-        self.target_x = 100
-        self.target_y = 100
+        self.target_x = 1176
+        self.target_y = 372
         self.target_radius = 150
 
         # Create central widget and layout
@@ -60,6 +60,7 @@ class PracticeWindow(QMainWindow):
         layout.addWidget(self.camera_label, alignment=Qt.AlignCenter)
         self.camera_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.camera_label.setScaledContents(True)
+        self.camera_label.setMaximumSize(1920, 1080)
 
         # Initialize camera
         self.cap = cv2.VideoCapture(0)
@@ -79,12 +80,14 @@ class PracticeWindow(QMainWindow):
 
     def randomize_target_position(self):
         """Randomly relocate the target within the camera frame."""
-        max_x = 640 - 2 * self.target_radius
-        max_y = 1000 - 2 * self.target_radius
+        frame_w, frame_h = 1500, 1000 # default values
+        max_x = frame_w - 2 * self.target_radius
+        max_y = frame_h - 2 * self.target_radius - 200
         if max_x < 0 or max_y < 0:
             return
-        self.target_x = random.randint(self.target_radius, max_x)
-        self.target_y = random.randint(self.target_radius, max_y)
+        
+        self.target_x = random.randint(max_x-100, max_x+100)
+        self.target_y = random.randint(self.target_radius+100, max_y)
 
     def next_frame(self):
         """Captures a camera frame, processes it, draws the target, and checks for hits."""
@@ -96,7 +99,7 @@ class PracticeWindow(QMainWindow):
             return
 
         # Mirror the frame
-        frame = cv2.flip(frame, 1)
+        # frame = cv2.flip(frame, 1)
 
         # Convert to RGB for Mediapipe
         image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -104,8 +107,6 @@ class PracticeWindow(QMainWindow):
         keypoints_result = self.pose.process(image_rgb)
 
         # 1) Draw the target on the frame
-        #    We'll do this later when converting the frame to QPixmap (so we can use QPainter)
-        #    However, for demonstration, let's store frame in a QImage then do painting.
 
         # 2) Check if user hits target with the correct technique
         if keypoints_result.pose_landmarks:
@@ -119,8 +120,6 @@ class PracticeWindow(QMainWindow):
             recognized_tech = analyze_one_frame(keypoints, self.template_path, self.threshold)
             recognized_tech = recognized_tech.upper() if recognized_tech else None 
 
-            print("INFO: Recognized technique:", recognized_tech)
-
             # If recognized technique is one of the user-selected techniques, proceed to check "hit"
             if recognized_tech in self.selected_techniques:
                 # Pass recognized_tech to is_hit
@@ -132,10 +131,19 @@ class PracticeWindow(QMainWindow):
 
         # 3) Convert the frame to QPixmap and draw the target with QPainter
         #    Because the frame is BGR from OpenCV, convert to RGB
+
+        # Draw the skeleton on the frame if pose landmarks are detected
+        if keypoints_result.pose_landmarks:
+            # Draw landmarks and connections
+            mp.solutions.drawing_utils.draw_landmarks(frame, keypoints_result.pose_landmarks, self.mp_pose.POSE_CONNECTIONS)
+
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         h, w, ch = frame_rgb.shape
         bytes_per_line = ch * w
         qimg = QImage(frame_rgb.data, w, h, bytes_per_line, QImage.Format_RGB888)
+
+        if self.camera_label.styleSheet() == "background-color: black;":
+            self.camera_label.setStyleSheet("")  
 
         # Draw the target using QPainter
         painter = QPainter()
@@ -166,12 +174,18 @@ class PracticeWindow(QMainWindow):
         if required_hand not in keypoints:
             return False
 
-        # 3. Convert normalized [0..1] coordinates to your frame size
+        # 3. Convert normalized [0..1] coordinates to the frame size
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        frame_w, frame_h, ch = frame_rgb.shape
+        frame_h, frame_w, ch = frame_rgb.shape
+        # frame_w, frame_h = 1500, 1000 # default values
         rx_norm, ry_norm = keypoints[required_hand]
+
         hand_x = int(rx_norm * frame_w)
         hand_y = int(ry_norm * frame_h)
+
+        # print("INFO: Recognized technique:", recognized_tech)
+        # print("INFO: Hand location:", hand_x, hand_y)
+        # print("INFO: Target location:", self.target_x, self.target_y)
 
         # 4. Check if that hand location lies within the target circle
         dist_sq = (hand_x - self.target_x) ** 2 + (hand_y - self.target_y) ** 2

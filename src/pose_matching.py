@@ -45,7 +45,7 @@ class PoseMatcher:
                 min_distance = distance
                 best_match_name = name
 
-        print(f"Best match: {best_match_name} with distance: {min_distance}")
+        # print(f"Best match: {best_match_name} with distance: {min_distance}")
         # self.keypoint_visualizer.plot_keypoints(normalized_detected)
 
         if min_distance <= self.threshold:
