@@ -1,10 +1,12 @@
 import numpy as np
 from typing import Dict, Tuple, List
 from src.normalization import normalize_keypoints
+from src.template_visualizer import KeypointVisualizer
 
 class PoseMatcher:
     def __init__(self, threshold: float = 0.5):
         self.threshold = threshold  # Threshold for considering a pose as matched
+        self.keypoint_visualizer = KeypointVisualizer()
 
     def compute_distance(self, keypoints_a: Dict[str, List[float]], keypoints_b: Dict[str, List[float]], method: str = 'euclidean') -> float:
         """
@@ -42,6 +44,9 @@ class PoseMatcher:
             if distance < min_distance:
                 min_distance = distance
                 best_match_name = name
+
+        print(f"Best match: {best_match_name} with distance: {min_distance}")
+        # self.keypoint_visualizer.plot_keypoints(normalized_detected)
 
         if min_distance <= self.threshold:
             return best_match_name, min_distance

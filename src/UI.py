@@ -9,7 +9,7 @@ import gc
 import os
 import mediapipe as mp
 from src.analyzer import analyze_all, analyze_one_frame
-
+from src.practice_ui import PracticeWindow
 
 class BoxingApp(QMainWindow):
 
@@ -26,7 +26,7 @@ class BoxingApp(QMainWindow):
         self.frame_count = 0
         self.interval = 10
         self.max_frame = 1000
-        self.threshold = 0.5
+        self.threshold = 0.3
         self.save_frames_path = os.path.abspath(r'data/frames_img')
         self.results = {}
         self.techniques = {'HOOK': 0, 'JAB': 0, 'CROSS': 0, 'UPPERCUT': 0}
@@ -53,7 +53,7 @@ class BoxingApp(QMainWindow):
         self.upload_btn = QPushButton('Upload', self)
         self.upload_btn.setFixedHeight(40)  # 強制限制高度
         self.file_label = QLabel(f"File: {self.video_file_name}", self)
-        self.file_label.setStyleSheet("font-size: 24px;")  # 與按鈕文字大小一致
+        self.file_label.setStyleSheet("font-size: 20px;")  # 與按鈕文字大小一致
         self.file_label.setFixedHeight(40)  # 確保高度與按鈕一致
         upload_layout.addWidget(self.upload_btn)
         upload_layout.addWidget(self.file_label)
@@ -69,12 +69,16 @@ class BoxingApp(QMainWindow):
         self.video_label.setAlignment(Qt.AlignCenter)
         self.video_label.setStyleSheet("background-color: black;")
         self.video_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        # self.video_label.setScaledContents(True)
+        self.video_label.setMaximumSize(700, 700)
 
         # Skeleton video display layout (processed video with skeleton)
         self.skeleton_video_label = QLabel(self)
         self.skeleton_video_label.setAlignment(Qt.AlignCenter)
         self.skeleton_video_label.setStyleSheet("background-color: black;")
         self.skeleton_video_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        # self.skeleton_video_label.setScaledContents(True)
+        self.skeleton_video_label.setMaximumSize(700, 700)
 
         video_layout.addWidget(self.video_label)
         video_layout.addWidget(self.skeleton_video_label)
@@ -85,10 +89,10 @@ class BoxingApp(QMainWindow):
         self.jab_cb = QCheckBox('Jab - 0 times', self)
         self.cross_cb = QCheckBox('Cross - 0 times', self)
         self.uppercut_cb = QCheckBox('Uppercut - 0 times', self)
-        self.hook_cb.setStyleSheet("font-size: 40px;")
-        self.jab_cb.setStyleSheet("font-size: 40px;")
-        self.cross_cb.setStyleSheet("font-size: 40px;")
-        self.uppercut_cb.setStyleSheet("font-size: 40px;")
+        self.hook_cb.setStyleSheet("font-size: 20px;")
+        self.jab_cb.setStyleSheet("font-size: 20px;")
+        self.cross_cb.setStyleSheet("font-size: 20px;")
+        self.uppercut_cb.setStyleSheet("font-size: 20px;")
         technique_layout.addWidget(self.hook_cb)
         technique_layout.addWidget(self.jab_cb)
         technique_layout.addWidget(self.cross_cb)
@@ -236,8 +240,6 @@ class BoxingApp(QMainWindow):
                     self.tech_color[update_text] = 'black'
                     self.changable = True
 
-
-
     def display_frame(self, frame):
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         h, w, ch = rgb_frame.shape
@@ -247,7 +249,19 @@ class BoxingApp(QMainWindow):
         if self.video_label.styleSheet() == "background-color: black;":
             self.video_label.setStyleSheet("")  # 移除背景樣式
 
-        self.video_label.setPixmap(QPixmap.fromImage(qimg))
+        pixmap = QPixmap.fromImage(qimg)
+        # Scale the pixmap so that it:
+        #   1) Fits within the label's current size
+        #   2) Preserves the aspect ratio
+        #   3) Looks smooth
+        target_size = self.video_label.size()  # current size of the QLabel
+        scaled_pixmap = pixmap.scaled(
+            target_size,
+            Qt.KeepAspectRatio,
+            Qt.SmoothTransformation
+        )
+
+        self.video_label.setPixmap(scaled_pixmap)
 
     def update_technique_labels(self):
         self.hook_cb.setText(f'Hook - {self.techniques["HOOK"]} times')
@@ -255,21 +269,34 @@ class BoxingApp(QMainWindow):
         self.cross_cb.setText(f'Cross - {self.techniques["CROSS"]} times')
         self.uppercut_cb.setText(f'Uppercut - {self.techniques["UPPERCUT"]} times')
 
-        self.hook_cb.setStyleSheet(f"color: {self.tech_color['HOOK']}; font-size: 40px;")
-        self.jab_cb.setStyleSheet(f"color: {self.tech_color['JAB']}; font-size: 40px;")
-        self.cross_cb.setStyleSheet(f"color: {self.tech_color['CROSS']}; font-size: 40px;")
-        self.uppercut_cb.setStyleSheet(f"color: {self.tech_color['UPPERCUT']}; font-size: 40px;")
+        self.hook_cb.setStyleSheet(f"color: {self.tech_color['HOOK']}; font-size: 20px;")
+        self.jab_cb.setStyleSheet(f"color: {self.tech_color['JAB']}; font-size: 20px;")
+        self.cross_cb.setStyleSheet(f"color: {self.tech_color['CROSS']}; font-size: 20px;")
+        self.uppercut_cb.setStyleSheet(f"color: {self.tech_color['UPPERCUT']}; font-size: 20px;")
 
     def open_practice_page(self):
         """Switch to Practice Mode and open a new window for the camera."""
-        self.timer.stop()  # Stop the main video playback timer
+        self.timer.stop()  # Stop the main video playback timer if it's running
 
-        # Start the camera thread for practice mode
-        self.camera_thread = CameraThread()
-        self.camera_thread.start()
+        # Gather which checkboxes are checked
+        selected_techniques = []
+        if self.hook_cb.isChecked():
+            selected_techniques.append("HOOK")
+        if self.jab_cb.isChecked():
+            selected_techniques.append("JAB")
+        if self.cross_cb.isChecked():
+            selected_techniques.append("CROSS")
+        if self.uppercut_cb.isChecked():
+            selected_techniques.append("UPPERCUT")
 
-        # Connect the stop signal to ensure cleanup
-        self.camera_thread.stop_signal.connect(self.cleanup_camera_thread)
+        # Create and show the PracticeWindow
+        # (Here we reuse the same template_path and threshold you used in the main window)
+        self.practice_window = PracticeWindow(
+            selected_techniques=selected_techniques,
+            template_path=self.template_path,
+            threshold=self.threshold
+        )
+        self.practice_window.show()
 
     def cleanup_camera_thread(self):
         """Ensure the camera thread stops properly."""
@@ -307,8 +334,19 @@ class BoxingApp(QMainWindow):
         if self.skeleton_video_label.styleSheet() == "background-color: black;":
             self.skeleton_video_label.setStyleSheet("")  # 移除背景樣式
 
-        # Display the processed frame with skeleton on the skeleton video label
-        self.skeleton_video_label.setPixmap(QPixmap.fromImage(qimg))
+        pixmap = QPixmap.fromImage(qimg)
+        # Scale the pixmap so that it:
+        #   1) Fits within the label's current size
+        #   2) Preserves the aspect ratio
+        #   3) Looks smooth
+        target_size = self.skeleton_video_label.size()  # current size of the QLabel
+        scaled_pixmap = pixmap.scaled(
+            target_size,
+            Qt.KeepAspectRatio,
+            Qt.SmoothTransformation
+        )
+
+        self.skeleton_video_label.setPixmap(scaled_pixmap)
 
     def set_realTime_mode(self, realTime):
         self.realTime_mode = realTime

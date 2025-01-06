@@ -1,4 +1,4 @@
-from src.keypoint_extractor import KeypointExtractor, extract_keypoints
+from src.keypoint_extractor import KeypointExtractor
 from src.keypoint_templates import TemplateManager
 from src.pose_matching import PoseMatcher
 

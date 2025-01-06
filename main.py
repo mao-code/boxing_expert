@@ -89,7 +89,7 @@ for frame_idx, keypoints in enumerate(keypoints_per_frame):
         print(f"Frame {frame_idx + 1}: No matching pose found within the threshold.")
 '''
 
-results = analyze_all(VIDEO_PATH, TEMPLATE_PATH, FRAME_INTERVAL, MAX_FRAME, THRESHOLD, FRAMES_PATH)
+# results = analyze_all(VIDEO_PATH, TEMPLATE_PATH, FRAME_INTERVAL, MAX_FRAME, THRESHOLD, FRAMES_PATH)
 # print(results)
 
 app = QApplication(sys.argv)
