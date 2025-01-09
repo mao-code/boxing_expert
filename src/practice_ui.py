@@ -6,6 +6,7 @@ from PyQt5.QtGui import QPixmap, QImage, QPainter, QColor, QPen
 from PyQt5.QtWidgets import QMainWindow, QLabel, QVBoxLayout, QWidget, QSizePolicy
 
 from src.analyzer import analyze_one_frame
+from src.hw_arduino import SerialManager
 
 class PracticeWindow(QMainWindow):
     """
@@ -14,6 +15,11 @@ class PracticeWindow(QMainWindow):
     """
     def __init__(self, selected_techniques=None, template_path=None, threshold=0.5, parent=None):
         super().__init__(parent)
+        self.arduino = SerialManager(
+            port="/dev/cu.usbmodem1101", # Put your port here
+            baud_rate=500000, 
+            timeout=0.1
+        )
         self.technique_hand_map = {
             "CROSS": "right_wrist",
             "UPPERCUT": "right_wrist",
@@ -38,7 +44,7 @@ class PracticeWindow(QMainWindow):
         self.score = 0
 
         # Random target parameters (x, y, radius)
-        self.target_x = 1176
+        self.target_x = 1100
         self.target_y = 372
         self.target_radius = 150
 
@@ -86,7 +92,7 @@ class PracticeWindow(QMainWindow):
         if max_x < 0 or max_y < 0:
             return
         
-        self.target_x = random.randint(max_x-100, max_x+100)
+        self.target_x = random.randint(max_x-200, max_x+100)
         self.target_y = random.randint(self.target_radius+100, max_y)
 
     def next_frame(self):
@@ -123,11 +129,15 @@ class PracticeWindow(QMainWindow):
             # If recognized technique is one of the user-selected techniques, proceed to check "hit"
             if recognized_tech in self.selected_techniques:
                 # Pass recognized_tech to is_hit
-                if self.is_hit(recognized_tech, keypoints, frame):
+                is_hit, hand = self.is_hit(recognized_tech, keypoints, frame)
+                hand = 'l' if hand == 'left_wrist' else 'r'
+
+                if is_hit:
                     self.score += 1
+                    self.arduino.cmd2send(hand)
+
                     self.score_label.setText(f"Score: {self.score}")
                     self.randomize_target_position()
-
 
         # 3) Convert the frame to QPixmap and draw the target with QPainter
         #    Because the frame is BGR from OpenCV, convert to RGB
@@ -191,7 +201,7 @@ class PracticeWindow(QMainWindow):
         dist_sq = (hand_x - self.target_x) ** 2 + (hand_y - self.target_y) ** 2
         radius_sq = self.target_radius ** 2
         # If within circle => "hit"
-        return dist_sq <= radius_sq
+        return dist_sq <= radius_sq, required_hand
 
 
     def closeEvent(self, event):

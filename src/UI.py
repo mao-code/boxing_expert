@@ -70,7 +70,7 @@ class BoxingApp(QMainWindow):
         self.video_label.setStyleSheet("background-color: black;")
         self.video_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         # self.video_label.setScaledContents(True)
-        self.video_label.setMaximumSize(700, 700)
+        # self.video_label.setMaximumSize(700, 700)
 
         # Skeleton video display layout (processed video with skeleton)
         self.skeleton_video_label = QLabel(self)
@@ -78,7 +78,7 @@ class BoxingApp(QMainWindow):
         self.skeleton_video_label.setStyleSheet("background-color: black;")
         self.skeleton_video_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         # self.skeleton_video_label.setScaledContents(True)
-        self.skeleton_video_label.setMaximumSize(700, 700)
+        # self.skeleton_video_label.setMaximumSize(700, 700)
 
         video_layout.addWidget(self.video_label)
         video_layout.addWidget(self.skeleton_video_label)
