@@ -15,11 +15,12 @@ class PracticeWindow(QMainWindow):
     """
     def __init__(self, selected_techniques=None, template_path=None, threshold=0.5, parent=None):
         super().__init__(parent)
-        self.arduino = SerialManager(
-            port="/dev/cu.usbmodem1101", # Put your port here
-            baud_rate=500000, 
-            timeout=0.1
-        )
+        # For hardware arduino feedback, uncomment this line
+        # self.arduino = SerialManager(
+        #     port="/dev/cu.usbmodem1101", # Put your port here
+        #     baud_rate=500000, 
+        #     timeout=0.1
+        # )
         self.technique_hand_map = {
             "CROSS": "right_wrist",
             "UPPERCUT": "right_wrist",
@@ -134,7 +135,9 @@ class PracticeWindow(QMainWindow):
 
                 if is_hit:
                     self.score += 1
-                    self.arduino.cmd2send(hand)
+
+                    # For hardware arduino feedback, uncomment this line
+                    # self.arduino.cmd2send(hand)
 
                     self.score_label.setText(f"Score: {self.score}")
                     self.randomize_target_position()
